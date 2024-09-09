@@ -5,7 +5,7 @@ import unittest
 
 BASE_URL = "https://web-gate.chitai-gorod.ru/api/v1"
 BASE_URL_2 = "https://www.chitai-gorod.ru/"
-TOKEN = "Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjU4MTAxMTcsImlhdCI6MTcyNTY0MjExNywiaXNzIjoiL2FwaS92MS9hdXRoL2Fub255bW91cyIsInN1YiI6IjFjNTNlMjMyNDA3MzZhOGRiMzk5MTNlNDVlZDZlNjcwYmNiMGYwMDIwMTkyODkyNzcyZGI1ODVkY2I2N2RjNWYiLCJ0eXBlIjoxMH0.zaQUyDbjdWKchuPGgKT7VZo5xuXqYSOuJDbxdGmdNqk; _ym_isad=2"
+TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjU4MTAxMTcsImlhdCI6MTcyNTY0MjExNywiaXNzIjoiL2FwaS92MS9hdXRoL2Fub255bW91cyIsInN1YiI6IjFjNTNlMjMyNDA3MzZhOGRiMzk5MTNlNDVlZDZlNjcwYmNiMGYwMDIwMTkyODkyNzcyZGI1ODVkY2I2N2RjNWYiLCJ0eXBlIjoxMH0.zaQUyDbjdWKchuPGgKT7VZo5xuXqYSOuJDbxdGmdNqk; _ym_isad=2"
 
 @allure.feature("API")
 @allure.story("Получение списка книг")
@@ -34,7 +34,7 @@ def test_get_book_by_id():
 
     response = requests.get(f"{BASE_URL}/products/slug/{book_id}", headers=headers)
     assert response.status_code == 200, f"Ожидался статус-код 200, но получен {response.status_code}"
-    assert "Михаил", "Лермонтов" in response.text
+    assert "Михаил" in response.text and "Лермонтов" in response.text
     
 @allure.feature("API")
 @allure.story("Поиск книг на кириллице")
@@ -74,7 +74,7 @@ def test_search_empty():
 
     response = requests.get(f"{BASE_URL_2}/search/product?phrase=", headers=headers)
     assert response.status_code == 400, f"Ожидался статус-код 200, но получен {response.status_code}"
-    assert 'Phrase обязательное поле' in response.text
+    assert 'phrase обязательное поле' in response.text
 
 
 @allure.feature("API")

@@ -1,11 +1,9 @@
 import allure
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 from MainPage import MainPage
 
 @allure.title("Открытие сайта")
@@ -78,7 +76,7 @@ def test_catalog_search():
 
 @allure.title("Проверка пустой корзины")
 @allure.description("Проверка, что в пустой корзине появляется сообщение 'В корзине ничего нет'")
-@allure.feature("")
+@allure.feature("READ")
 @allure.severity("blocker")
 @pytest.mark.positive_test
 def test_get_empty_result_message():
